@@ -1,4 +1,5 @@
 const mineflayer = require('mineflayer');
+const http = require('http');
 
 let bot; // Globalna zmienna bot
 
@@ -19,7 +20,7 @@ process.stdin.on('data', (input) => {
 // Funkcja tworząca bota
 function createBot() {
   bot = mineflayer.createBot({
-    host: 'iskyblock.pl', // np. 'localhost'
+    host: 'kukonMjAU.aternos.me', // np. 'localhost'
     port: 25565, // Port serwera Minecraft (domyślnie 25565)
     username: 'Kopiku', // Nazwa bota
     version: '1.19.4' // Ustaw wersję Minecraft, jeśli nie jest domyślna
@@ -34,13 +35,19 @@ function createBot() {
       bot.chat('/l skarpety1');
       console.log('Wysłano komendę: /l skarpety1');
 
-      // Kolejne 5 sekund opóźnienia i wpisanie komendy /home d
+      // Kolejne 5 sekund opóźnienia i wpisanie komendy /home z
       setTimeout(() => {
-        bot.chat('/home d');
-        console.log('Wysłano komendę: /home d');
+        bot.chat('/home z');
+        console.log('Wysłano komendę: /home z');
       }, 5000);
 
     }, 10000); // 10000 milisekund = 10 sekund
+  });
+
+  // Wyświetlanie wszystkich wiadomości (graczy, serwera, systemowych) w konsoli
+  bot.on('message', (jsonMsg) => {
+    const message = jsonMsg.toString(); // Konwersja wiadomości do tekstu
+    console.log(`${message}`);
   });
 
   // Obsługa błędów
@@ -57,3 +64,13 @@ function createBot() {
 
 // Uruchomienie bota
 createBot();
+
+// Tworzenie serwera HTTP na porcie 8080
+const server = http.createServer((req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+  res.end('Bot Minecraft działa!\n');
+});
+
+server.listen(8080, () => {
+  console.log('Serwer HTTP działa na porcie 8080');
+});
