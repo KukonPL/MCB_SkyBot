@@ -23,7 +23,7 @@ function createBot() {
     host: 'kukonMjAU.aternos.me', // np. 'localhost'
     port: 25565, // Port serwera Minecraft (domyślnie 25565)
     username: 'Kopiku', // Nazwa bota
-    version: '1.19.4' // Ustaw wersję Minecraft, jeśli nie jest domyślna
+    version: '1.20.1' // Ustaw wersję Minecraft, jeśli nie jest domyślna
   });
 
   // Obsługa logowania
